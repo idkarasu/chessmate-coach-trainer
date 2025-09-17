@@ -1,23 +1,29 @@
 <!-- === ChessMate: Vs Computer — Full Page (Header + Game + Footer) === -->
 
+<!-- Header (tema düğmesi YOK) -->
 <header class="cm-nav" id="cm-site-header" aria-label="ChessMate.ink">
   <div class="cm-container cm-nav-inner">
     <a class="cm-brand" href="/" aria-label="ChessMate.ink">
-      <img src="https://chessmate.ink/wp-content/uploads/2025/08/Untitled-image.jpeg" alt="" class="cm-logo-img" loading="lazy">
+      <img src="https://chessmate.ink/wp-content/uploads/2025/08/Untitled-image.jpeg"
+           alt="" class="cm-logo-img" loading="lazy">
       <span class="cm-brand-text">ChessMate.ink</span>
     </a>
     <nav class="cm-menu" aria-label="Primary"></nav>
   </div>
 </header>
 
+<!-- === Game === -->
+
 <link rel="stylesheet" href="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.css">
-<link rel="stylesheet" href="/wp-content/uploads/play/chess.css?v=chess.css-05">
-<link rel="stylesheet" href="/wp-content/uploads/play/chess.theme.css?v=chess.theme.css-01">
-<link rel="stylesheet" href="/wp-content/uploads/play/chess.coach.css?v=chess.coach.css-05">
+<link rel="stylesheet" href="/wp-content/uploads/play-tr/chess.css?v=chess.css-04">
+<link rel="stylesheet" href="/wp-content/uploads/play-tr/chess.theme.css?v=chess.theme.css-01">
+<link rel="stylesheet" href="/wp-content/uploads/play-tr/chess.coach.css?v=chess.coach.css-05">
 
 <main class="cm-wrap" id="cm-app" role="main">
+  <!-- Toolbar: iki satır -->
   <div class="cm-toolbar" role="toolbar" aria-label="Oyun Kontrolleri">
-    <div class="cm-bar cm-toolbar-top" aria-label="Üst kontrol çubuğu">
+    <!-- ÜST SATIR: Taraf • Zorluk • Yeni Oyun -->
+    <div class="cm-bar cm-bar-top" aria-label="Üst kontrol çubuğu">
       <label for="cm-side">Taraf:</label>
       <select id="cm-side" class="cm-sel">
         <option value="white">Beyaz</option>
@@ -38,22 +44,20 @@
       <button id="cm-new" class="cm-btn" type="button" data-variant="primary">Yeni Oyun</button>
     </div>
 
-    <!-- ALT SATIR: EN TR DE • 🌙 🔊 🎓 🎯 ♟️ ⏪ ⏩ -->
-    <div class="cm-bar cm-toolbar-bottom" aria-label="Alt kontrol çubuğu">
-      <span class="cm-lang-group" role="group" aria-label="Language">
-        <button id="cm-lang-en" class="cm-btn cm-lang-toggle" type="button" aria-pressed="false" title="English" data-lang="en">🇬🇧</button>
-        <button id="cm-lang-tr" class="cm-btn cm-lang-toggle" type="button" aria-pressed="true"  title="Türkçe"  data-lang="tr">🇹🇷</button>
-        <button id="cm-lang-de" class="cm-btn cm-lang-toggle" type="button" aria-pressed="false" title="Deutsch" data-lang="de">🇩🇪</button>
-      </span>
-
+    <!-- ALT SATIR: 🌙 🔊 🎓 🎯 ♟️ ⏪ ⏩  -->
+    <div class="cm-bar cm-bar-bottom" aria-label="Alt kontrol çubuğu">
+      <!-- Tema / Ses -->
       <button id="cm-theme-toggle" class="cm-btn" type="button" aria-pressed="false" title="Tema değiştir">🌙</button>
       <button id="cm-sound-toggle" class="cm-btn" type="button" aria-pressed="true" title="Sesi aç/kapat">🔊</button>
 
+      <!-- Koç & İpuçları -->
       <button id="cm-coach-toggle" class="cm-btn cm-coach-toggle" type="button" aria-pressed="true" title="Eğitmen Modu">🎓</button>
       <button id="cm-hints" class="cm-btn" type="button" aria-pressed="true" title="Hamle ipuçları">🎯</button>
 
+      <!-- Tahta Teması -->
       <button id="cm-board-toggle" class="cm-btn" type="button" aria-label="Tahtayı değiştir">♟️</button>
 
+      <!-- Geri/İleri -->
       <button id="cm-undo" class="cm-btn" type="button" aria-label="Geri al">⏪</button>
       <button id="cm-redo" class="cm-btn" type="button" aria-label="İleri al">⏩</button>
 
@@ -61,6 +65,7 @@
     </div>
   </div>
 
+  <!-- Koç paneli buranın hemen ALTINA otomatik yerleşiyor -->
   <div id="cm-board" aria-label="Satranç Tahtası"></div>
   <div class="cm-status" id="cm-status" aria-live="polite">Hazır.</div>
   <pre id="cm-pgn" aria-label="Hamle listesi (PGN)"></pre>
@@ -98,25 +103,23 @@
   </div>
 </div>
 
-<!-- === Libs === -->
+<!-- === Libs (SIRASI ÖNEMLİ) === -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
 <script>window.jQuery||document.write('<script src="/wp-includes/js/jquery/jquery.min.js"><\/script>')</script>
 <script src="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.js" defer></script>
 <script src="/wp-content/uploads/chess/libs/chess.min.js" defer></script>
 
+<!-- Enjeksiyonu kapat (header/footer HTML'de) -->
 <script>window.CM_NO_CHROME = true;</script>
 
-<!-- i18n (dil yönetimi) -->
-<script src="/wp-content/uploads/play/i18n.js?v=i18n.js-04" defer></script>
-
 <!-- Uygulama & UI & Tema & Koç -->
-<script src="/wp-content/uploads/play/chess.js?v=chess.js-02" defer></script>
-<script src="/wp-content/uploads/play/chess.ui.js?v=chess.ui.js-18" defer></script>
-<script src="/wp-content/uploads/play/chess.theme.js?v=chess.theme.js-01" defer></script>
-<script src="/wp-content/uploads/play/chess.coach.js?v=chess.coach.js-09" defer></script>
+<script src="/wp-content/uploads/play-tr/chess.js?v=chess.js-01" defer></script>
+<script src="/wp-content/uploads/play-tr/chess.ui.js?v=chess.ui.js-01" defer></script>
+<script src="/wp-content/uploads/play-tr/chess.theme.js?v=chess.theme.js-01" defer></script>
+<script src="/wp-content/uploads/play-tr/chess.coach.js?v=chess.coach.js-02" defer></script>
 
-<!-- ECO (TR tablo varsa kalsın; SAYS EN/DE geldiğinde koç isimlerini yine gösterir) -->
-<script src="/wp-content/uploads/play/chess.eco.top100.tr.js?v=chess.eco.top100.tr.js-01" defer></script>
+<!-- ECO tablosu (koç anlatımında açılış ismi için) -->
+<script src="/wp-content/uploads/play-tr/chess.eco.top100.tr.js?v=chess.eco.top100.tr.js-01" defer></script>
 
 <noscript>Bu uygulamayı kullanmak için JavaScript’i etkinleştiriniz.</noscript>
 
