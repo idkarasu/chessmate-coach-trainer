@@ -1,0 +1,146 @@
+<!-- === ChessMate: Vs Computer — Full Page (Header + Game + Footer) === -->
+
+<header class="cm-nav" id="cm-site-header" aria-label="ChessMate.ink">
+  <div class="cm-container cm-nav-inner">
+    <a class="cm-brand" href="/" aria-label="ChessMate.ink">
+      <img src="https://chessmate.ink/wp-content/uploads/2025/08/Untitled-image.jpeg" alt="" class="cm-logo-img" loading="lazy">
+      <span class="cm-brand-text">ChessMate.ink</span>
+    </a>
+    <nav class="cm-menu" aria-label="Primary"></nav>
+  </div>
+</header>
+
+<link rel="stylesheet" href="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.css">
+<link rel="stylesheet" href="/wp-content/uploads/play/chess.css?v=chess.css-05">
+<link rel="stylesheet" href="/wp-content/uploads/play/chess.theme.css?v=chess.theme.css-01">
+<link rel="stylesheet" href="/wp-content/uploads/play/chess.coach.css?v=chess.coach.css-05">
+
+<main class="cm-wrap" id="cm-app" role="main">
+  <div class="cm-toolbar" role="toolbar" aria-label="Oyun Kontrolleri">
+    <div class="cm-bar cm-toolbar-top" aria-label="Üst kontrol çubuğu">
+      <label for="cm-side">Taraf:</label>
+      <select id="cm-side" class="cm-sel">
+        <option value="white">Beyaz</option>
+        <option value="black">Siyah</option>
+      </select>
+
+      <label for="cm-skill">Zorluk (Elo):</label>
+      <select id="cm-skill" class="cm-sel">
+        <option value="0">~100</option>
+        <option value="5">~400</option>
+        <option value="10">~800</option>
+        <option value="13" selected>~1200</option>
+        <option value="16">~1600</option>
+        <option value="18">~1800</option>
+        <option value="20">~2000+</option>
+      </select>
+
+      <button id="cm-new" class="cm-btn" type="button" data-variant="primary">Yeni Oyun</button>
+    </div>
+
+    <!-- ALT SATIR: EN TR DE • 🌙 🔊 🎓 🎯 ♟️ ⏪ ⏩ -->
+    <div class="cm-bar cm-toolbar-bottom" aria-label="Alt kontrol çubuğu">
+      <span class="cm-lang-group" role="group" aria-label="Language">
+        <button id="cm-lang-en" class="cm-btn cm-lang-toggle" type="button" aria-pressed="false" title="English" data-lang="en">🇬🇧</button>
+        <button id="cm-lang-tr" class="cm-btn cm-lang-toggle" type="button" aria-pressed="true"  title="Türkçe"  data-lang="tr">🇹🇷</button>
+        <button id="cm-lang-de" class="cm-btn cm-lang-toggle" type="button" aria-pressed="false" title="Deutsch" data-lang="de">🇩🇪</button>
+      </span>
+
+      <button id="cm-theme-toggle" class="cm-btn" type="button" aria-pressed="false" title="Tema değiştir">🌙</button>
+      <button id="cm-sound-toggle" class="cm-btn" type="button" aria-pressed="true" title="Sesi aç/kapat">🔊</button>
+
+      <button id="cm-coach-toggle" class="cm-btn cm-coach-toggle" type="button" aria-pressed="true" title="Eğitmen Modu">🎓</button>
+      <button id="cm-hints" class="cm-btn" type="button" aria-pressed="true" title="Hamle ipuçları">🎯</button>
+
+      <button id="cm-board-toggle" class="cm-btn" type="button" aria-label="Tahtayı değiştir">♟️</button>
+
+      <button id="cm-undo" class="cm-btn" type="button" aria-label="Geri al">⏪</button>
+      <button id="cm-redo" class="cm-btn" type="button" aria-label="İleri al">⏩</button>
+
+      <span id="cm-toast" class="cm-toast" role="status" aria-live="polite" aria-atomic="true" style="display:none"></span>
+    </div>
+  </div>
+
+  <div id="cm-board" aria-label="Satranç Tahtası"></div>
+  <div class="cm-status" id="cm-status" aria-live="polite">Hazır.</div>
+  <pre id="cm-pgn" aria-label="Hamle listesi (PGN)"></pre>
+</main>
+
+<!-- Terfi Modal -->
+<div id="cm-promote-back" role="dialog" aria-modal="true" aria-labelledby="cm-promote-title" aria-describedby="cm-promote-desc" tabindex="-1" style="display:none">
+  <div id="cm-promote">
+    <h4 id="cm-promote-title">Terfi seç</h4>
+    <div class="cm-promote-grid" role="group" aria-label="Terfi seçenekleri">
+      <button id="cm-promote-q" class="cm-promote-btn">♛ Vezir</button>
+      <button id="cm-promote-r" class="cm-promote-btn">♜ Kale</button>
+      <button id="cm-promote-b" class="cm-promote-btn">♝ Fil</button>
+      <button id="cm-promote-n" class="cm-promote-btn">♞ At</button>
+    </div>
+    <p class="cm-promote-note" id="cm-promote-desc">Genelde <strong>Vezir</strong> en iyisidir.</p>
+  </div>
+</div>
+
+<!-- Sonuç Modal -->
+<div id="cm-result-back" role="dialog" aria-modal="true" aria-labelledby="cm-result-title" aria-describedby="cm-result-sub" tabindex="-1" style="display:none">
+  <div id="cm-result">
+    <h3 id="cm-result-title">Oyun Sonucu</h3>
+    <p id="cm-result-sub">Özet burada görünecek.</p>
+    <div id="cm-result-stats" class="stats" role="group" aria-label="İstatistikler">
+      <span class="pill">Kazanma: <span data-k="W">0</span></span>
+      <span class="pill">Kaybetme: <span data-k="L">0</span></span>
+      <span class="pill">Beraberlik: <span data-k="D">0</span></span>
+    </div>
+    <div class="row">
+      <button id="cm-res-rematch" class="cm-btn">Yeniden Oyna</button>
+      <button id="cm-res-pgn" class="cm-btn">PGN’yi Kopyala</button>
+      <button id="cm-res-close" class="cm-btn">Kapat</button>
+    </div>
+  </div>
+</div>
+
+<!-- === Libs === -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+<script>window.jQuery||document.write('<script src="/wp-includes/js/jquery/jquery.min.js"><\/script>')</script>
+<script src="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.js" defer></script>
+<script src="/wp-content/uploads/chess/libs/chess.min.js" defer></script>
+
+<script>window.CM_NO_CHROME = true;</script>
+
+<!-- i18n (dil yönetimi) -->
+<script src="/wp-content/uploads/play/i18n.js?v=i18n.js-04" defer></script>
+
+<!-- Uygulama & UI & Tema & Koç -->
+<script src="/wp-content/uploads/play/chess.js?v=chess.js-02" defer></script>
+<script src="/wp-content/uploads/play/chess.ui.js?v=chess.ui.js-18" defer></script>
+<script src="/wp-content/uploads/play/chess.theme.js?v=chess.theme.js-01" defer></script>
+<script src="/wp-content/uploads/play/chess.coach.js?v=chess.coach.js-09" defer></script>
+
+<!-- ECO (TR tablo varsa kalsın; SAYS EN/DE geldiğinde koç isimlerini yine gösterir) -->
+<script src="/wp-content/uploads/play/chess.eco.top100.tr.js?v=chess.eco.top100.tr.js-01" defer></script>
+
+<noscript>Bu uygulamayı kullanmak için JavaScript’i etkinleştiriniz.</noscript>
+
+<!-- === Footer === -->
+<footer class="cm-footer" id="cm-site-footer">
+  <div class="cm-container">
+    <div class="cm-social">
+      <a class="cm-ico" href="https://www.instagram.com/chessmate.ink/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+      </a>
+      <a class="cm-ico" href="https://www.tiktok.com/@chessmate.ink" target="_blank" rel="noopener" title="TikTok" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 8.1a6.8 6.8 0 0 1-4-1.3v7.4a5.7 5.7 0 1 1-5.7-5.7c.4 0 .7 0 1 .1v2.5A3.2 3.2 0 1 0 11 16V2h2a6.8 6.8 0 0 0 4 4.1c.6.3 1.3.5 2 .6v2.2c-.7-.1-1.4-.3-2-.6z"/></svg>
+      </a>
+      <a class="cm-ico" href="https://www.youtube.com/@ChessMate-ink"
+         target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor"
+            d="M23.498 6.186a2.996 2.996 0 0 0-2.112-2.12C19.773 3.5 12 3.5 12 3.5s-7.773 0-9.386.566a2.996 2.996 0 0 0-2.112 2.12A31.49 31.49 0 0 0 0 12c0 2.05.17 4.098.502 5.814a2.996 2.996 0 0 0 2.112 2.12C4.227 20.5 12 20.5 12 20.5s7.773 0 9.386-.566a2.996 2.996 0 0 0 2.112-2.12C23.83 16.098 24 14.05 24 12s-.17-4.098-.502-5.814zM9.75 15.02v-6.04L15.5 12 9.75 15.02z"/>
+        </svg>
+      </a>
+      <a class="cm-ico" href="mailto:Chessmate.ink@gmail.com" title="E-posta" aria-label="E-posta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 5h20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm1.6 2 8.4 6 8.4-6H3.6zm18.8 1.7-8.9 6.3a2 2 0 0 1-2.4 0L2.2 8.7V17h20.2V8.7z"/></svg>
+      </a>
+    </div>
+    <p class="cm-copy">© ChessMate.ink — Everything About Chess.</p>
+  </div>
+</footer>
