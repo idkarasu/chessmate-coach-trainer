@@ -1,0 +1,264 @@
+/* chess.coach.css-03 */
+
+:root{
+  --coach-ok:#3ddc97;
+  --coach-ex:#22d3ee;
+  --coach-vgood:#6ee7b7;
+  --coach-goodp:#86efac;
+  --coach-good:#60a5fa;
+  --coach-midp:#a5b4fc;
+  --coach-mid:#93c5fd;
+  --coach-wrnp:#f59e0b;
+  --coach-warn:#fbbf24;
+  --coach-bad:#fb923c;
+  --coach-lose:#ef4444;
+  --coach-leg:#a855f7;
+  --coach-force:#f472b6;
+  --coach-book:#94a3b8;
+  --coach-missed:#14b8a6;
+  --coach-inf:#9ca3af;
+  --coach-avatar-size: 56px;
+  --coach-line-h: 1.3;
+  --coach-font: 13px;
+  --coach-lines: 4;
+  --coach-4ln-h: calc(var(--coach-lines) * var(--coach-line-h) * 1em);
+}
+
+#cm-coach-wrap.coach-wrap{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:8px auto;
+  width:100%;
+  max-width:92vw;
+  contain: content;
+}
+
+#cm-coach-avatar.coach-avatar,
+.coach-avatar{
+  width:var(--coach-avatar-size);
+  height:var(--coach-avatar-size);
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid var(--line);
+  background:#111;
+  flex:0 0 var(--coach-avatar-size);
+  user-select:none;
+  -webkit-user-drag:none;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.coach-bubble{
+  position:relative;
+  max-width:100%;
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:8px 10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+  flex:1 1 auto;
+  overflow:hidden;
+}
+
+.coach-bubble::before{
+  content:"";
+  position:absolute;
+  left:-8px; top:16px;
+  width:0; height:0;
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
+  border-right:8px solid var(--panel);
+}
+.coach-bubble::after{
+  content:"";
+  position:absolute;
+  left:-9px; top:16px;
+  width:0; height:0;
+  border-top:9px solid transparent;
+  border-bottom:9px solid transparent;
+  border-right:9px solid var(--line);
+}
+
+#cm-coach{
+  height: var(--coach-4ln-h);
+  max-height: var(--coach-4ln-h);
+  overflow: hidden;
+  font-size: var(--coach-font);
+  line-height: var(--coach-line-h);
+  -webkit-overflow-scrolling: touch;
+}
+#cm-coach .empty{
+  color:var(--muted);
+  font-style:italic;
+  padding:2px 0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+#cm-coach .row{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-areas:
+    "mv badge"
+    "txt txt";
+  gap:.35em .5em;
+  align-items:center;
+  height:100%;
+}
+
+#cm-coach .mvno{
+  grid-area: mv;
+  color:var(--muted);
+  min-width:2.5ch;
+  text-align:right;
+  font-weight:700;
+  line-height: inherit;
+  white-space:nowrap;
+  display:flex; align-items:center;
+  height: calc(var(--coach-line-h) * 1em);
+}
+
+#cm-coach .badge{
+  grid-area: badge;
+  display:inline-flex;
+  align-items:center;
+  font-weight:900;
+  padding:0 8px;
+  height: calc(var(--coach-line-h) * 1em);
+  line-height: 1;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  white-space:nowrap;
+  align-self:center;
+}
+
+#cm-coach .txt{
+  grid-area: txt;
+  color:var(--text);
+  word-break:break-word;
+  hyphens:auto;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+#cm-coach .txt .san{ font-weight:800; }
+
+#cm-coach .badge.coach-welcome-pill{
+  grid-column: 1 / -1;
+  justify-self: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  height: auto;
+  line-height: 1.2;
+  color: var(--gold);
+  font-weight: 900;
+}
+#cm-coach .txt.welcome{
+  display:flex;
+  -webkit-line-clamp: initial;
+  -webkit-box-orient: initial;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  height: calc(3 * var(--coach-line-h) * 1em);
+}
+#cm-coach .coach-intro{ color: var(--text); opacity:.95; }
+#cm-coach .coach-intro strong{ color: var(--gold); font-weight:900; }
+
+.badge.leg{    color:var(--coach-leg);    border-color:color-mix(in srgb, var(--coach-leg) 35%, transparent); }
+.badge.ok{     color:var(--coach-ok);     border-color:color-mix(in srgb, var(--coach-ok) 35%, transparent); }
+.badge.force{  color:var(--coach-force);  border-color:color-mix(in srgb, var(--coach-force) 35%, transparent); }
+.badge.ex{     color:var(--coach-ex);     border-color:color-mix(in srgb, var(--coach-ex) 35%, transparent); }
+.badge.vgood{  color:var(--coach-vgood);  border-color:color-mix(in srgb, var(--coach-vgood) 35%, transparent); }
+.badge.goodp{  color:var(--coach-goodp);  border-color:color-mix(in srgb, var(--coach-goodp) 35%, transparent); }
+.badge.good{   color:var(--coach-good);   border-color:color-mix(in srgb, var(--coach-good) 35%, transparent); }
+.badge.midp{   color:var(--coach-midp);   border-color:color-mix(in srgb, var(--coach-midp) 35%, transparent); }
+.badge.mid{    color:var(--coach-mid);    border-color:color-mix(in srgb, var(--coach-mid) 35%, transparent); }
+.badge.wrnp{   color:var(--coach-wrnp);   border-color:color-mix(in srgb, var(--coach-wrnp) 35%, transparent); }
+.badge.wrn{    color:var(--coach-warn);   border-color:color-mix(in srgb, var(--coach-warn) 35%, transparent); }
+.badge.bad{    color:var(--coach-bad);    border-color:color-mix(in srgb, var(--coach-bad) 35%, transparent); }
+.badge.lose{   color:var(--coach-lose);   border-color:color-mix(in srgb, var(--coach-lose) 35%, transparent); }
+.badge.book{   color:var(--coach-book);   border-color:color-mix(in srgb, var(--coach-book) 35%, transparent); }
+.badge.missed{ color:var(--coach-missed); border-color:color-mix(in srgb, var(--coach-missed) 35%, transparent); }
+.badge.inf{    color:var(--coach-inf);    border-color:color-mix(in srgb, var(--coach-inf) 35%, transparent); }
+
+.cm-coach-toggle{
+  width:36px;
+  height:36px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  line-height:1;
+  border-radius:8px;
+}
+.cm-coach-toggle[aria-pressed="false"]{ opacity:.55; }
+.cm-coach-toggle:focus-visible{
+  outline:2px solid var(--focus, #00a3ff);
+  outline-offset:2px;
+}
+
+body.cm-theme-light .coach-bubble{
+  background:#f3f6fa;
+  border-color:#d7dee8;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+body.cm-theme-light .coach-bubble::before{ border-right-color:#f3f6fa; }
+body.cm-theme-light .coach-bubble::after{  border-right-color:#d7dee8; }
+
+@media (prefers-reduced-motion: reduce){
+  .coach-bubble,
+  #cm-coach-wrap.coach-wrap{
+    scroll-behavior:auto;
+    animation:none;
+    transition:none;
+  }
+}
+
+@media (max-width:560px){
+  :root{
+    --coach-avatar-size: 52px;
+    --coach-font: 12.5px;
+  }
+}
+/* coach-03 — Altın Hamle rozetini gerçekten altın yap */
+.coach-bubble .badge.ok{
+  background: var(--gold) !important;       /* #FFD700 */
+  color: #111 !important;                    /* altın üstünde koyu metin */
+  border-color: color-mix(in oklab, var(--gold) 60%, black) !important;
+}
+
+/* Kontrast iyileştirme */
+.coach-bubble .txt,
+.coach-bubble .why,
+.coach-bubble .tip{
+  color: var(--text) !important;
+  opacity: 1 !important;
+}
+.coach-bubble .why{ font-style: normal !important; }  /* italik kaldırmak istersen */
+.coach-bubble{ line-height: 1.5; }
+.coach-bubble .txt{ font-weight: 600;
+}
+/* coach-04 — Rozeti içerik kadar yap (full-width olmasın) */
+.coach-bubble .row{
+  grid-template-columns: auto 1fr; /* zaten böyleyse sorun yok */
+  align-items: center;
+}
+
+.coach-bubble .badge{
+  justify-self: start;   /* grid içinde esneme yok */
+  align-self: center;
+  display: inline-flex;  /* pill */
+  width: auto;           /* full-width değil */
+  max-width: 100%;
+  white-space: nowrap;   /* taşmayan tek satır */
+  padding: .28rem .6rem; /* boyut dengesi */
+  border-radius: 999px;
+}
