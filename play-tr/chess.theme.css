@@ -1,0 +1,125 @@
+/* chess.theme.css-01 */
+body.cm-theme-light {
+  --bg:#F6F8FB;
+  --text:#0E1116;
+  --muted:#4B5563;
+  --line:#D6DEE8;
+  --panel:#FFFFFF;
+  --gold:#FFD700;
+  background: linear-gradient(180deg, #EEF3F9 0%, var(--bg) 100%) !important;
+}
+body.cm-theme-dark {}
+
+body.cm-theme-light #cm-board {
+  background: #ECF1F8 !important;
+  outline-color: var(--line) !important;
+  box-shadow: 0 6px 22px rgba(0,0,0,.12) !important;
+}
+
+body.cm-theme-light button.cm-btn,
+body.cm-theme-light select.cm-sel {
+  background:#FFFFFF !important; color:var(--text) !important; border-color:var(--line) !important;
+  box-shadow:0 1px 2px rgba(16,24,40,.04) !important;
+}
+body.cm-theme-light button.cm-btn:hover,
+body.cm-theme-light select.cm-sel:hover { background:#F5F7FA !important; }
+
+body.cm-theme-light .cm-status {
+  color: var(--text) !important;
+  background:#FFFFFF !important;
+  border-color: var(--line) !important;
+  box-shadow:0 1px 2px rgba(16,24,40,.04) !important;
+}
+body.cm-theme-light #cm-pgn     { background:#F3F6FA !important; border-color:var(--line) !important; color:var(--text) !important; }
+body.cm-theme-light .cm-toast   { background:#FFFFFF !important; border-color:var(--line) !important; color:var(--text) !important; }
+
+body.cm-theme-light #cm-promote,
+body.cm-theme-light #cm-result {
+  background: var(--panel) !important;
+  color: var(--text) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12) !important;
+}
+
+#cm-promote h4, #cm-result h3 { margin:0 0 8px; font-weight:900; }
+body.cm-theme-dark  #cm-promote h4,
+body.cm-theme-dark  #cm-result h3 { color: var(--gold) !important; }
+body.cm-theme-light #cm-promote h4,
+body.cm-theme-light #cm-result h3 { color: var(--text) !important; }
+
+body.cm-theme-light #cm-promote-back,
+body.cm-theme-light #cm-result-back{
+  background: rgba(255,255,255,.65) !important;
+  backdrop-filter: blur(0.5px);
+}
+body.cm-theme-dark #cm-promote-back,
+body.cm-theme-dark #cm-result-back{
+  background: rgba(0,0,0,.55) !important;
+  backdrop-filter: blur(0.5px);
+}
+
+.square-highlight,
+body.cm-theme-light .square-highlight{
+  box-shadow:
+    inset 0 0 0 2px #ffff00,
+    inset 0 0 0 1000px rgba(255,255,0,0.15) !important;
+}
+
+.board-b72b1{
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border:1px solid rgba(223,227,234,.9) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .12) !important;
+  background: transparent !important;
+}
+.board-b72b1 .alpha-d2270,
+.board-b72b1 .numeric-fc462{
+  font: 600 11px/1 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif !important;
+  color:#8A93A3 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.65) !important;
+}
+body.cm-theme-dark .board-b72b1 .alpha-d2270,
+body.cm-theme-dark .board-b72b1 .numeric-fc462{ color:#98A3B6 !important; text-shadow:none !important; }
+
+#cm-theme-toggle,
+#cm-sound-toggle {
+  width: 36px; height: 36px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+}
+@media (max-width:560px){
+  #cm-theme-toggle, #cm-sound-toggle { width: 40px; height: 40px; font-size: 20px; }
+}
+
+body.cm-board-classic #cm-board .white-1e1d7,
+body.cm-board-classic #cm-board .white,
+body.cm-board-classic #cm-board .square-55d63.white{
+  background:#f0d9b5 !important;
+}
+body.cm-board-classic #cm-board .black-3c85d,
+body.cm-board-classic #cm-board .black,
+body.cm-board-classic #cm-board .square-55d63.black{
+  background:#b58863 !important;
+}
+
+body.cm-board-green #cm-board .white-1e1d7,
+body.cm-board-green #cm-board .white,
+body.cm-board-green #cm-board .square-55d63.white{
+  background:#f3f7ea !important;
+}
+body.cm-board-green #cm-board .black-3c85d,
+body.cm-board-green #cm-board .black,
+body.cm-board-green #cm-board .square-55d63.black{
+  background:#6fa066 !important;
+}
+
+body.cm-board-cmink #cm-board .white-1e1d7,
+body.cm-board-cmink #cm-board .white,
+body.cm-board-cmink #cm-board .square-55d63.white{
+  background:#aaaaac !important;
+}
+body.cm-board-cmink #cm-board .black-3c85d,
+body.cm-board-cmink #cm-board .black,
+body.cm-board-cmink #cm-board .square-55d63.black{
+  background:#1e1d1e !important;
+}
